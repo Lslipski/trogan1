@@ -1,0 +1,61 @@
+.customizedLabel{
+    background: #DDECF5;
+}
+#div_id_Systolic{
+    position: relative;
+    left: -150px;
+    top: 20px;
+}
+#div_id_Diastolic{
+    position: relative;
+    left: 150px;
+    top: -25px;
+}
+#id_GM_Medicine_List{
+    height: 100px;
+    width: 800px;
+    padding-top: 20px;
+    padding-left: 20px;
+    overflow: scroll;
+}
+#id_GM_Provider_Notes{
+    height: 100px;
+    width: 800px;
+    padding-top: 20px;
+    padding-left: 20px;
+    overflow: scroll;
+}
+#div_id_Medicine_List{
+    position: relative;
+    top: 10px;
+}
+#div_id_Patient_Type .control-label{
+    display: none;
+}
+#div_id_Common_Diagnoses{
+    position: relative;
+    top: 20px;
+}
+#div_id_Common_Diagnoses .control-label{
+    display: none;
+}
+#div_id_Patient_Type{
+    position: relative;
+    top: 30px;
+}
+#submit-id-submit{
+  position: relative;
+  top: 50px;
+}
+button, input, optgroup, select, textarea {
+    margin: 5px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.control-label {
+    background: #DDECF5;
+}

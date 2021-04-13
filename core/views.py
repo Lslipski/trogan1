@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PatientForm, EncounterForm, PCSForm
+from .forms import PatientForm, EncounterForm, PCSForm, RegistrationWithRole, GMEncounterForm
 from django.http import HttpResponseRedirect, Http404
 from django.utils import timezone
 
@@ -10,12 +10,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django_tables2 import RequestConfig
 from .models import patient, encounter
 from .tables import PatientTable, EncounterTable
+from django.contrib import messages
 
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        profile_form = RegistrationWithRole(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            user = form.save()
+            profile = profile_form.save(commit=False)  # create a new profile with data from the form
+            profile.user = user  # add user to profile
+            profile.save()
+
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -23,7 +29,10 @@ def signup(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+        profile_form = RegistrationWithRole()
+
+    context = {'form': form, 'profile_form': profile_form}  # context previously not used, allows us to pass 2 forms
+    return render(request, 'signup.html', context)
 
 def home(request):
     return render(request, 'home.html', {'table': table})
@@ -135,6 +144,7 @@ class BeingSeenView(LoginRequiredMixin, ListView):
         context['table'] = table
         return context
 
+
 #define actions for posting an encounter form
 def post_encounter(request):
     form = EncounterForm(request.POST)
@@ -147,27 +157,33 @@ def post_encounter(request):
      #   form.save(commit=True)
     return HttpResponseRedirect('/home/')
 
+
 def patient_encounter(request):
     form = EncounterForm()
     return render(request, 'patient_encounter.html', {'form': form})
 
 
+def gm_encounter(request):
+    form = GMEncounterForm()
+    return render(request, 'patient_encounter.html', {'form': form})
+
 #define actions for posting a PCS form
 def post_pcs(request):
     form = PCSForm(request.POST)
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         raise Http404
     if form.is_valid():
         instance = form.save(commit=False)
         instance.provider_id = request.user
         instance.save()
-    return HttpResponseRedirect('/home/')
+        return render(request, 'pcs_confirmation.html')
+    else:
+        return HttpResponseRedirect('/home/')
+
 
 def pcs(request):
     form = PCSForm()
     return render(request, 'pcs.html', {'form': form})
-
-
 
 class MyEncountersListView(LoginRequiredMixin, ListView):
   model = encounter

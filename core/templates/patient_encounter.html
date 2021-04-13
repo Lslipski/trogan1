@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% load widget_tweaks %}
+
 {% load crispy_forms_tags %}
 {% crispy form form.helper %}
+
+{% block styles %}
+    {% if user.userprofile.role == "PT" %}
+        <link rel="stylesheet" href="{% static 'styleEncounter.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'styleEncounterGM.css' %}">
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="container text-center col-md-8 col-sm-6 col-xs-4">
 <h2 class="brand">Patient Encounter</h2>
     <br>
-{% crispy form %}
+        {% crispy form %}
 </div>
+
+<!--<div id="scale">-->
+<!--    {% if user.userprofile.role == "PT" %}-->
+<!--        <img src=/static/images/groc.png width="700" height="200">-->
+<!--    {% else %}-->
+<!--    {% endif %}-->
+<!--</div>-->
+
 <br>
 <br>
 {% endblock %}

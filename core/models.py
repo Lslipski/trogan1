@@ -2,6 +2,17 @@ from django.db import models
 import datetime
 from django.utils import timezone
 from django.conf import settings
+from django.contrib.auth.models import User
+
+# roles
+Physical_Therapy= 'PT'
+General_Medicine = 'GM'
+Admin = 'Admin'
+role_choices = ((Physical_Therapy, 'PT'), (General_Medicine, 'GM'), (Admin, 'Admin'))
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=50, choices=role_choices, default='PT')
 
 #Model standard options
 
@@ -114,25 +125,24 @@ class encounter(models.Model):
     Walker = models.BooleanField(default=False)
     Wheel_Chair = models.BooleanField(default=False)
 
-    Manual_Therapy = models.BooleanField(default=False)
-    Education = models.BooleanField(default=False)
-    Exercise = models.BooleanField(default=False)
+    Cupping = models.BooleanField(default=False)
+    Tape = models.BooleanField(default=False)
+    Dry_Needle = models.BooleanField(default=False)
+
     Improvement = models.IntegerField(choices=imp_choices)
 
-    Systolic = models.CharField(max_length=4, blank=True, default='0')
-    Diastolic = models.CharField(max_length=4, blank=True, default='0')
+    Systolic = models.CharField(max_length=4, blank=True, default='Systolic')
+    Diastolic = models.CharField(max_length=4, blank=True, default='Diastolic')
     Infection_UTI = models.BooleanField(default=False)
     Infection_Vaginal = models.BooleanField(default=False)
     Infection_Other = models.BooleanField(default=False)
 
-    Gen_Med = models.BooleanField(default=False)
     Orthotics = models.BooleanField(default=False)
     Prosthetics = models.BooleanField(default=False)
     Refer_Out_Of_Stand = models.BooleanField(default=False)
     Neuro = models.BooleanField(default=False)
     Peds = models.BooleanField(default=False)
     Wound = models.BooleanField(default=False)
-    Gen_PT = models.BooleanField(default=False)
     Pelvic_Health = models.BooleanField(default=False)
 
     Provider_Notes = models.TextField(max_length=2000)
@@ -164,6 +174,13 @@ class encounter(models.Model):
         return str(self.id)
 
 
+class GMEncounter(models.Model):
+    patient_id = models.ForeignKey(patient, on_delete=models.CASCADE)
+    Systolic = models.CharField(max_length=4, blank=True, default='Systolic')
+    Diastolic = models.CharField(max_length=4, blank=True, default='Diastolic')
+    GM_Provider_Notes = models.TextField(max_length=2000)
+    GM_Medicine_List = models.TextField(max_length=2000)
+
 class pain_catastrophizing_scale(models.Model):
 
     patient_id = models.ForeignKey(patient, on_delete=models.CASCADE)
@@ -184,6 +201,23 @@ class pain_catastrophizing_scale(models.Model):
     q11_pcs = models.IntegerField(choices=imp_choices)
     q12_pcs = models.IntegerField(choices=imp_choices)
     q13_pcs = models.IntegerField(choices=imp_choices)
+
+    provider_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta(object):
+        ordering = ['my_order', '-patient_id']
+
+    def __str__(self):
+        return str(self.id)
+
+class pain_catastrophizing_scale2(models.Model):
+
+    patient_id = models.ForeignKey(patient, on_delete=models.CASCADE)
+    provider_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    q1_pcs = models.IntegerField(choices=imp_choices)
+    q2_pcs = models.IntegerField(choices=imp_choices)
 
     provider_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     my_order = models.PositiveIntegerField(default=0, blank=False, null=False)

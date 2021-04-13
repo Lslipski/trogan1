@@ -1,0 +1,69 @@
+a:hover {
+    text-decoration: none;
+}
+
+body{
+    font-weight: 500;
+    font-size:20px;
+}
+.nav.nav-tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.hereLink {
+    color: blue;
+}
+
+.nav-link {
+    color: black;
+}
+h1 {
+    color:black;
+}
+
+a {
+    color: black;
+}
+
+.btn.btn-primary {
+    background: #3481C1;
+    border-color: #3481C1;
+}
+#btn-enterPatient {
+    background: #AECDE0;
+    font-size: x-large;
+    border: none;
+    width: 250px;
+    height: 80px;
+}
+#btn-enterEncounterPT {
+    background:#AEE0DB;
+    font-size: x-large;
+    border: none;
+    width: 250px;
+    height: 80px;
+}
+#btn-enterEncounterGM {
+    background:#AEE0DB;
+    font-size: x-large;
+    border: none;
+    width: 250px;
+    height: 80px;
+}
+
+.enterInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 50px;
+    padding-bottom: 50px
+}
+
+

@@ -1,0 +1,53 @@
+#div_id_patient_id {
+    padding-top: 15px;
+    padding-bottom: 0px;
+}
+button, input, optgroup, select, textarea{
+    margin: 10px;
+    position:relative;
+    top: -10px;
+}
+label {
+    padding-left: 10px;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    justify-content: left;
+}
+input[type="radio"] {
+    width:50;
+    height:1.5em;
+    position: relative;
+    top: -10px;
+}
+.radio {
+    float:right;
+    border: 0px;
+    width: 7%;
+    height: 1em;
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border: .5px solid grey;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 35px;
+    padding-left: 20px;
+    width: 300px;
+    height: 50px;
+    filter: drop-shadow(1px 1px 0px #7A868E);
+}
+.control-group {
+    background: #DDECF5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+legend {
+    display: none;
+
+}

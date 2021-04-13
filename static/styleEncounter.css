@@ -1,0 +1,88 @@
+#groc{
+    position: relative;
+    top: 90px;
+}
+#div_id_Systolic{
+    position: relative;
+    left: -150px;
+    top: 100px;
+}
+#div_id_Diastolic{
+    position: relative;
+    left: 150px;
+    top: 15px;
+}
+#scale{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 90px;
+}
+#id_Medicine_List{
+    height: 100px;
+    width: 1000px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+#id_Provider_Notes{
+    height: 100px;
+    width: 1000px;
+    padding-top: 10px;
+    padding-left: 10px;
+    overflow: scroll;
+}
+#div_id_Provider_Notes{
+    position: relative;
+    top: 10px;
+}
+#div_id_Patient_Type .control-label{
+    display: none;
+}
+#div_id_Common_Diagnoses{
+    position: relative;
+    top: 20px;
+}
+#div_id_Common_Diagnoses .control-label{
+    display: none;
+}
+#div_id_Patient_Type{
+    position: relative;
+    top: 30px;
+}
+#div_id_Blood_Pressure{
+    position: relative;
+    top: 80px;
+}
+#div_id_Next_Steps{
+    position: relative;
+    top: 80px;
+}
+#div_id_Improvement{
+    position: relative;
+    top: 130px;
+}
+#div_id_Orthotic_Devices{
+  position: relative;
+  top: 90px;
+}
+#submit-id-submit{
+  position: relative;
+  top: 150px;
+}
+#div_id_Assistive_Devices{
+    position: relative;
+    top: 50px;
+}
+button, input, optgroup, select, textarea {
+    margin: 5px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.control-label {
+    background: #DDECF5;
+}
+

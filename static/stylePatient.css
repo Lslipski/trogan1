@@ -1,0 +1,97 @@
+#id_first_name {
+    position: relative;
+    left: -180px;
+    top: 10px;
+}
+#id_last_name {
+    position: relative;
+    right: -200px;
+    top: -74px;
+}
+#id_age {
+    position: relative;
+    top: -60px;
+    width: 150px;
+}
+#id_heard_of_stand_how {
+    position: relative;
+    top: -60px;
+    left: 210px;
+}
+#id_refugee_reason{
+    position: relative;
+    top: -60px;
+    left: 210px;
+}
+.control-group {
+    display: flex;
+    flex-direction: row;
+}
+.control-label{
+    font-size: large;
+    position: relative;
+    left: 10px;
+    align: right;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.numberinput {
+    padding-left: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 10px;
+
+}
+label {
+    padding-left: 10px;
+    color: black;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    justify-content: left;
+}
+input[type="radio"]{
+    float: right;
+    border: 1px;
+    width: 50%;
+    height: 1.5em;
+}
+.radio{
+    float:right;
+    border: 0px;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    width: 150px;
+}
+.textInput {
+    font-size: large;
+    width: 300px;
+    height: 50px;
+    padding-left: 20px;
+}
+#id_chief_complaint {
+    font-size: large;
+    width: 500px;
+    height: 150px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.control-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+legend {
+    background: #DDECF5;
+
+}

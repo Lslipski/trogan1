@@ -9,11 +9,15 @@
        <div>
      {% if user.is_authenticated %}
              <h1>My Previous Encounters</h1>
-             <h1>You are currently logged in as {{ user.username }}</h1>
+             <h4>{{ user.username }}, {{ user.userprofile.role }} </h4>
        </div>
-       <div>
-             <p class="lead"><a href="{% url 'demographics' %}">Enter a New Patient</a></p>
-             <p class="lead"><a href="{% url 'patient_encounter' %}">Create a New Encounter</a></p>
+       <div class="enterInfo">
+            <button type="button" id="btn-enterPatient" class="btn btn-info"><a href="{% url 'demographics' %}">New Patient</a></button>
+           {% if user.userprofile.role == "PT" %}
+                <button type="button" id="btn-enterEncounterPT" class="btn btn-success"><a href="{% url 'patient_encounter' %}">New Encounter</a></button>
+           {% else %}
+                <button type="button" id="btn-enterEncounterGM" class="btn btn-success"><a href="{% url 'gm_encounter' %}">New Encounter</a></button>
+           {% endif %}
        </div>
      {% else %}
        <div>
@@ -24,32 +28,17 @@
 </div>
 <br>
 
-
-{% if table.page %}
+<div class="container text-center">
+        {% if table.page %}
   <div class="table-container">
 {% endif %}
+
 
 {% block table %}
     <div class="table-responsive">
         <table class="table table-hover table-bordered table-striped"{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
             {% block table.thead %}
             <thead>
-            <!--
-                <tr>
-                    <th><a href="{% url 'demographics' %}" class="btn btn-small btn-primary dark"><span class="hidden-phone"><i class="fa fa-user-plus"></i>Add Patient</span></a>
-
-                    </th>
-                    <th colspan="5">
-                        <form method="post" class="form-inline form-search pull-right">
-                          {% csrf_token %}
-                            <div>
-                              <input id="search_form_id" name="search" type="text" class="form-control col-md-3" placeholder="ID, First Name, Last Name"{% if search %} value="{{ search }}"{% endif %}>
-                              <button type="submit" class="btn btn-small btn-dark"><i class="fa fa-search"></i>Search</button>
-                            </div>
-                        </form>
-                    </th>
-                </tr>
-            -->
               <tr>
                 {% for column in table.columns %}
                     {% if column.orderable %}
