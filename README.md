@@ -1,6 +1,8 @@
 # trogan1
 The first edition of the STAND Haiti patient tracking system
 
+[Here is a piece I wrote] (https://www.lukeslipski.com/patrons_page.html) to give an in-depth explanation of the system to people who donated to my recent trips.
+
 This project was created to aid the organization STAND: the Haiti Project in collecting information on patient
 demographics, treatment, and care plans. STAND (www.standhaitiproject.com) provides orthopedic rehabilitation in 
 Port-de-Paix, Haiti.
